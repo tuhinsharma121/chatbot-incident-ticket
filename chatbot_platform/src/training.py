@@ -1,9 +1,11 @@
 from time import time
+import nltk
 
 from chatbot_platform.src.chatbot_model import ChatbotModel
 from chatbot_platform.src.config import *
 from util.data_store.local_filesystem import LocalFileSystem
 from util.data_store.s3_data_store import S3DataStore
+nltk.download('punkt')
 
 
 def train_and_save_chatbot_model(data_store):

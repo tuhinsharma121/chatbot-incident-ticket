@@ -12,7 +12,7 @@ def chat(chatbot_model,sentence):
     if len(results) >0:
         category = results[0][0]
         confidence = results[0][1]
-        response_text = random.choice(chatbot.response[category])
+        response_text = random.choice(chatbot_model.response[category])
     else:
         category = "Unknown"
         confidence = "Unknown"
@@ -21,7 +21,7 @@ def chat(chatbot_model,sentence):
 
     response_dict = dict()
     response_dict["category"] = category
-    response_dict["confidence"] = confidence
+    response_dict["confidence"] = str(confidence)
     response_dict["response_text"] = response_text
     return response_dict
 

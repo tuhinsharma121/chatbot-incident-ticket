@@ -2,6 +2,7 @@ import flask
 import logging
 from flask import Flask, request
 import sys
+import nltk
 
 from chatbot_platform.src.scoring import chat,load_chatbot_model_s3
 from chatbot_platform.src.training import train_and_save_chatbot_model_s3
@@ -11,6 +12,7 @@ app = Flask(__name__)
 
 
 global imdb_recsys
+nltk.download('punkt')
 app.chatbot = load_chatbot_model_s3()
 
 

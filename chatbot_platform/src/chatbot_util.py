@@ -1,6 +1,7 @@
 import nltk
 from nltk.stem.lancaster import LancasterStemmer
 import numpy as np
+import time
 
 
 def clean_up_sentence(sentence):
@@ -20,3 +21,7 @@ def bow(sentence, words, show_details=False):
                 if show_details:
                     print("found in bag: %s" % w)
     return np.array(bag)
+
+def get_unique_number():
+    current_milli_time = int(round(time.time() * 1000))
+    return current_milli_time

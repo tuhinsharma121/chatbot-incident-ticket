@@ -40,6 +40,37 @@ def load_chatbot_model_s3():
     chatbot = ChatbotModel.load(data_store=data_store)
     return chatbot
 
+
+def load_credential_local(src_dir):
+    data_store = LocalFileSystem(src_dir=src_dir)
+    credential_json = data_store.read_json_file(CREDENTIAL_FILENAME)
+    return dict(credential_json)
+
+def load_credential_s3():
+    data_store = S3DataStore(src_bucket_name=AWS_BUCKET_NAME, access_key=AWS_S3_ACCESS_KEY_ID,
+                             secret_key=AWS_S3_SECRET_ACCESS_KEY)
+    credential_json = data_store.read_json_file(CREDENTIAL_FILENAME)
+    return dict(credential_json)
+
+def verify_credential(credential_dict,username,password):
+    if username in credential_dict:
+        if password in credential_dict[username]:
+            return credential_dict[username][0]
+    return None
+
+def get_username_from_userid(credential_dict,user_id):
+    result = None
+    for username in credential_dict:
+        if credential_dict[username][0] == user_id:
+            result = username
+            break
+    return result
+
+def write_incident_json_to_s3(contents, filename):
+    data_store = S3DataStore(src_bucket_name=AWS_BUCKET_NAME, access_key=AWS_S3_ACCESS_KEY_ID,
+                             secret_key=AWS_S3_SECRET_ACCESS_KEY)
+    data_store.write_json_file(contents=contents,filename=INCIDENT_FOLDERNAME+filename)
+
 if __name__ == '__main__':
     # chatbot = load_chatbot_model_local(src_dir="./chatbot_platform/data")
     # query = "my macbook is restarting everytime I try to open MS office"

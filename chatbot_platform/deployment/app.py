@@ -64,15 +64,14 @@ def raise_incident():
     result["user_id"] = user_id
     datetime_value = datetime.datetime.now().strftime("%Y-%m-%d %H:%M")
     result["datetime"] = datetime_value
-    incident_id = get_unique_number()
+    incident_id = str(get_unique_number())
     result["incident_id"] = incident_id
     result["username"] = username
     result["priority"] = priority
     result["subject"] = subject
     result["symptom"] = symptom
-    datetime_value = datetime_value.replace(" ","_")
-    write_incident_json_to_s3(contents = result, filename=user_id+datetime_value+".json")
-    return_value = {"status":"Incident Created Successfully!!","incident_id":incident_id}
+    write_incident_json_to_s3(contents=result, filename=incident_id + ".json")
+    return_value = {"status": "Incident Created Successfully!!", "incident_id": incident_id}
     return flask.jsonify(return_value)
 
 

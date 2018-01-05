@@ -1,0 +1,2 @@
+model_checkpoint_path: "/Users/tuhin.sharma/Documents/Git/hackasm/chatbot_platform/data/dl_model.tflearn"
+all_model_checkpoint_paths: "/Users/tuhin.sharma/Documents/Git/hackasm/chatbot_platform/data/dl_model.tflearn"

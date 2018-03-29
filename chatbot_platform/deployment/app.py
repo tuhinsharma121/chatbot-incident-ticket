@@ -5,7 +5,7 @@ import sys
 import nltk
 import datetime
 
-from chatbot_platform.src.scoring import chat, load_chatbot_model_s3, load_credential_s3, verify_credential, \
+from chatbot_platform.src.scoring import chat, load_chatbot_model_local, load_credential_local, verify_credential, \
     get_username_from_userid, write_incident_json_to_s3
 from chatbot_platform.src.training import train_and_save_chatbot_model_s3
 from chatbot_platform.src.chatbot_util import get_unique_number
@@ -15,8 +15,8 @@ app = Flask(__name__)
 
 global imdb_recsys
 nltk.download('punkt')
-app.chatbot = load_chatbot_model_s3()
-app.credential = load_credential_s3()
+app.chatbot = load_chatbot_model_local(src_dir="./chatbot_platform/data")
+app.credential = load_credential_local(src_dir="./chatbot_platform/data")
 
 
 @app.route('/')

@@ -72,13 +72,13 @@ def write_incident_json_to_s3(contents, filename):
     data_store.write_json_file(contents=contents,filename=INCIDENT_FOLDERNAME+filename)
 
 if __name__ == '__main__':
-    # chatbot = load_chatbot_model_local(src_dir="./chatbot_platform/data")
-    # query = "my macbook is restarting everytime I try to open MS office"
-    # result = chat(chatbot, query)
-    # print(result)
-
-    chatbot = load_chatbot_model_s3()
-    query = "are you interested in india pakistan war?"
+    chatbot = load_chatbot_model_local(src_dir="./chatbot_platform/data")
+    query = "Who is mahatma gandhi?"
     result = chat(chatbot, query)
     print(result)
+
+    # chatbot = load_chatbot_model_s3()
+    # query = "are you interested in india pakistan war?"
+    # result = chat(chatbot, query)
+    # print(result)
 

@@ -23,5 +23,5 @@ gevent==1.2.2
 boto3==1.4.7
 tensorflow==1.4.1
 tflearn==0.3.2
-nltk==3.2.5
+nltk==3.4.5
 h5py==2.7.1
